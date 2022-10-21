@@ -188,3 +188,13 @@ response i will return....
 
 
 ```
+
+
+**N/B**
+
+```aidl
+
+We can be able to have multiple Router function Beans.
+
+
+```
