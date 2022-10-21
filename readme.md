@@ -137,5 +137,24 @@ advice.
 
 This code is way more cleaner.
 
+```
+
+**Flux Methods**
+
+**(a)handle method**
+```aidl
+
+Handle the items emitted by this Flux by calling a biconsumer with the output sink for each onNext.
+
+
+BiConsumer interface in Java is an extension of the Consumer interface. 
+Represents an operation that accepts two input arguments and returns no result.
+
+
+```
+**(b)Sinks**
+
+```
+Sinks are constructs through which Reactive Streams signals can be programmatically pushed, with Flux or Mono semantics.
 
 ```
