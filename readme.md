@@ -126,3 +126,16 @@ I can also read the request in a Non-Blocking Way
 
 
 ```
+
+
+**Exception handling**
+
+```aidl
+
+The best way to handle spring boot exceptions is separately via the controller 
+advice.
+
+This code is way more cleaner.
+
+
+```
