@@ -158,3 +158,33 @@ Represents an operation that accepts two input arguments and returns no result.
 Sinks are constructs through which Reactive Streams signals can be programmatically pushed, with Flux or Mono semantics.
 
 ```
+
+
+**(c)cast**
+
+```aidl
+
+I can be able to cast the datatype in mypipeline and tranform
+it from one type to another.
+
+
+```
+
+**(d)Flat Map vs Map**
+
+```aidl
+
+
+My undertanding...
+
+
+flatMap will return my datatype in exactly the same way
+as My Response Mono.
+
+Map on the other hand transforms my datatype///
+
+If i use Map i have the autonomy of changing the type of
+response i will return....
+
+
+```
