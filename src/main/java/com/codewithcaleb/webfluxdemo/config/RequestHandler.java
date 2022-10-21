@@ -3,6 +3,7 @@ package com.codewithcaleb.webfluxdemo.config;
 
 import com.codewithcaleb.webfluxdemo.dto.MultiplyRequestDto;
 import com.codewithcaleb.webfluxdemo.dto.Response;
+import com.codewithcaleb.webfluxdemo.exceptions.InputValidationException;
 import com.codewithcaleb.webfluxdemo.service.ReactiveMathService;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
@@ -48,12 +49,22 @@ public class RequestHandler {
     public Mono<ServerResponse> multiplyHandler(ServerRequest serverRequest){
         //getting the request Body
         Mono<MultiplyRequestDto> multiplyRequestDtoMono = serverRequest.bodyToMono(MultiplyRequestDto.class);
+        System.out.println(serverRequest.headers());
         Mono<Response> responseMono = reactiveMathService.multiply(multiplyRequestDtoMono);
         return  ServerResponse.ok()
                 .body(responseMono,Response.class);
     }
 
+    public Mono<ServerResponse> squareHandlerWithValidation(ServerRequest serverRequest){
+        int input = Integer.parseInt(serverRequest.pathVariable("input"));
 
+        if(input < 10 || input < 20){
+         return Mono.error(new InputValidationException(input));
+        }
+
+        Mono<Response> responseMono = reactiveMathService.findSquare(input);
+        return ServerResponse.ok().body(responseMono, Response.class);
+    }
 
 
 }
