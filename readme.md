@@ -217,3 +217,61 @@ We can be able to have multiple Router function Beans.
 
 
 ```
+
+
+**Testing Reactive Applications**
+
+```aidl
+
+When testing reactive applications i can either block
+myCode or use the Step verifier.
+
+(This is because i must hold the thread otherwise the 
+test will exit.)
+
+Blocking even though it works is not recommended.
+
+
+this.webClient
+    .get()
+    .uri("reactive-math/square/{input}", 5)
+    .retrieve()
+    .bodyToMono(Response.class)
+    .block();
+
+```
+**StepVerifier**
+
+```aidl
+
+Is a Liblary for testing the Reactor Publisher Types
+
+I do not have to block my Code when Testing Reactive applications
+
+
+This is where the StepVerifier comes into Play
+
+
+(a)StepVerifier.Create(...)
+
+(b)Next
+
+ (i)expectNext()
+ (ii)expectNextCount()
+ 
+ (iii)If i am not sure what to expect i use thenConsumeWhie(..)
+
+(c)Verify
+
+(i)verifyComplete
+
+(ii)verify(Duration)
+
+(iii)verifyError()
+
+(d)StepVerifierOptions
+
+ (i)context
+ (ii)scenerio name
+ 
+```
