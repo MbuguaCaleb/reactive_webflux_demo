@@ -189,7 +189,26 @@ response i will return....
 
 ```
 
+**Route Grouping**
 
+```aidl
+
+We can be able to Group Routes and also return them
+conditionally based on a Predicate.
+
+For example you can be able to limit a route based on
+whether or not you have a permission enabled.
+
+(The Predicate in this case will be the permission)
+
+When Using a Route Predicate it Must have a fallback 
+condition.
+
+ .GET("square/{input}", RequestPredicates.path("*/1?"),requestHandler::squareHandler)
+ .GET("square/{input}", req->ServerResponse.badRequest().bodyValue("only 10-19 allowed"))
+                
+
+```
 **N/B**
 
 ```aidl
