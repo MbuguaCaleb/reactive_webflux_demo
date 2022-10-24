@@ -8,6 +8,8 @@ import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
 import java.net.URI;
+import java.util.Map;
+import java.util.concurrent.Flow;
 
 public class Lec07QueryParamsTest extends BaseTest {
 
@@ -20,16 +22,42 @@ public class Lec07QueryParamsTest extends BaseTest {
     @Test
     public void queryParamsTest(){
 
-        URI uri = UriComponentsBuilder.fromUriString(queryString)
-                .build(10, 20);
+//        //Approach One
+//     URI uri = UriComponentsBuilder.fromUriString(queryString)
+//                .build(10, 20);
+//
+//
+//        //method One
+//        Flux<Integer> integerFlux = this.webClient
+//                .get()
+//                .uri(uri)
+//                .retrieve()
+//                .bodyToFlux(Integer.class)
+//                .doOnNext(System.out::println)
+//                .doOnError(System.out::println);
+
+        //method Two
+//        Flux<Integer> integerFlux = this.webClient
+//                .get()
+//                .uri(b->b.path("jobs/search").query("count={count}&page={page}").build(10,20))
+//                .retrieve()
+//                .bodyToFlux(Integer.class)
+//                .doOnNext(System.out::println)
+//                .doOnError(System.out::println);
+
+
+        Map<String, Integer> map = Map.of(
+                "count", 10,
+                "page", 20
+        );
 
         Flux<Integer> integerFlux = this.webClient
-                .get()
-                .uri(uri)
-                .retrieve()
-                .bodyToFlux(Integer.class)
-                .doOnNext(System.out::println)
-                .doOnError(System.out::println);
+        .get()
+        .uri(b->b.path("jobs/search").query("count={count}&page={page}").build(map))
+        .retrieve()
+        .bodyToFlux(Integer.class)
+        .doOnNext(System.out::println)
+        .doOnError(System.out::println);
 
         //Expect Next count will be the no of items in MyFlux
         StepVerifier
