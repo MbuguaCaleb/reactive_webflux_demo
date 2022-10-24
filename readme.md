@@ -218,7 +218,18 @@ We can be able to have multiple Router function Beans.
 
 ```
 
+**WebClient**
 
+```aidl
+
+It is used to make requests to my reactive applications
+in a non-blocking way.
+
+
+Rest-Template is used in the blocking applications...
+
+
+```
 **Testing Reactive Applications**
 
 ```aidl
