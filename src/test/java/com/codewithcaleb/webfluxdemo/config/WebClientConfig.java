@@ -11,6 +11,6 @@ public class WebClientConfig {
     //adding webclient inMy Spring Context
     @Bean
     public WebClient webClient(){
-      return WebClient.builder().baseUrl("http://localhost:8080").build();
+      return WebClient.builder().baseUrl("http://localhost:8086").build();
     }
 }
