@@ -8,24 +8,26 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-public class Lec03PostRequestTest extends BaseTest {
+public class Lec04HeadersTest extends BaseTest{
+
 
 
     @Autowired
-    private  WebClient webClient;
+    private WebClient webClient;
 
 
     //difference between Body and BodyValue is that for BodyValue it is used for normal Objects
     //body on the other hand is used for publisher types
 
     @Test
-    public void postTest(){
+    public void headersTest(){
 
         //Making a Post Request
         Mono<Response> responseMono = this.webClient
                 .post()
                 .uri("reactive-math/multiply")
                 .bodyValue(buildRequestDto(5, 2))
+                .headers(h->h.set("someKey","someValue"))
                 .retrieve()
                 .bodyToMono(Response.class)
                 .doOnNext(System.out::println);
@@ -39,12 +41,11 @@ public class Lec03PostRequestTest extends BaseTest {
     }
 
     //Builder Object for my Post Request
-    private MultiplyRequestDto buildRequestDto(int a ,int b){
+    private MultiplyRequestDto buildRequestDto(int a , int b){
         MultiplyRequestDto dto = new MultiplyRequestDto();
         dto.setFirst(a);
         dto.setSecond(b);
         return dto;
     }
-
 
 }
