@@ -8,24 +8,19 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-public class Lec04HeadersTest extends BaseTest{
+public class Lec08AttributesTest extends BaseTest{
     @Autowired
     private WebClient webClient;
 
 
-    //difference between Body and BodyValue is that for BodyValue it is used for normal Objects
-    //body on the other hand is used for publisher types
-
     @Test
     public void headersTest(){
-        //Making a Post Request
-        //The token is as well part of the header
+
         Mono<Response> responseMono = this.webClient
                 .post()
                 .uri("reactive-math/multiply")
                 .bodyValue(buildRequestDto(5, 2))
-                .headers(h->h.set("someKey","someValue"))
-               // .headers(h->h.setBasicAuth("username","password"))
+                .attribute("auth","oauth")
                 .retrieve()
                 .bodyToMono(Response.class)
                 .doOnNext(System.out::println);
@@ -43,5 +38,4 @@ public class Lec04HeadersTest extends BaseTest{
         dto.setSecond(b);
         return dto;
     }
-
 }

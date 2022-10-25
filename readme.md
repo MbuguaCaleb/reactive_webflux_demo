@@ -286,3 +286,13 @@ This is where the StepVerifier comes into Play
  (ii)scenerio name
  
 ```
+
+**Java Optional**
+
+```aidl
+
+
+An Optional object in Java is a container object that 
+can hold both empty and a non-null values. If an Optional object does contain a value, we say that it is present; if it does not contain a value, we say that it is empty.
+
+```

@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 import reactor.test.StepVerifier;
 
-public class Lecture01GetSingleResponseTest extends BaseTest{
+public class Lec01GetSingleResponseTest extends BaseTest{
     @Autowired
     private WebClient webClient;
 
